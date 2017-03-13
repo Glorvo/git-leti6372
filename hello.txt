@@ -1,3 +1,6 @@
 print("Helo bratishki leti")
 print("How are you?")
+print("Kak dela?")
+print("Kak dela?")
+print("Pisdes")
 print("Testim")
