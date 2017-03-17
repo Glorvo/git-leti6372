@@ -3,3 +3,5 @@ print("How are you?")
 print("Kak dela?")
 print("Kak dela?")
 print("Testim")
+
+print("Ti pidor");
