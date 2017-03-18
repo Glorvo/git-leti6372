@@ -1,7 +1,1 @@
-print("Helo bratishki leti")
-print("How are you?")
-print("Kak dela?")
-print("Kak dela?")
-print("Testim")
-
-print("Ti pidor");
+Здесь будут храниться все .cs файлы проекта, которые уже написаны.
