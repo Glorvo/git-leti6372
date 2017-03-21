@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// Белоголов Григорий Дмитриевич
-// Функция по переводу натурального числа в целое 
-// Входные данные масссив int натурального числа
-// Знак числа: 1- минус, 0 - плюс.
-namespace Z_4
+/// <summary>
+/// Белоголов Григорий
+/// Преобразование натурального в целое
+/// </summary>
+namespace DiskMat
 {
     static class Z_4
     {
-        public static int[] Run(int [] input)
+        /// <summary>
+        /// Натуральное число подается на вход
+        /// </summary>
+        /// <param name="input">Натуральное число </param>
+        /// <returns></returns>
+        public static Digit Run(Digit input)
         {
-            int[] output = new int[input.Length+1];
-            output[0] = 0;// Число положительное
-            for(int i=1;i<=(input.Length +1);i++)
-            {
-                output[i] = input[i - 1];
-            }
+            Digit output = new Digit(input.Data);
+            output.Sign = true;
             return output;
         }
     }
