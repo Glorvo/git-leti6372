@@ -14,6 +14,7 @@ namespace P_6
     {
         public static int Run(int[] input)
         {
+            Polynomial.Clear();
             return (input.Length - 1); // Вычитаем x^0, коэфф. которого также есть в массиве
         }
     }
