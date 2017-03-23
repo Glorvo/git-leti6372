@@ -6,6 +6,36 @@ using System.Threading.Tasks;
 
 namespace DiskMat
 {
+    public static class AddMath
+    {
+        /// <summary>
+        /// Сравнение любых массивов
+        /// </summary>
+        /// <typeparam name="T">Тип</typeparam>
+        /// <param name="a1">Первый массив</param>
+        /// <param name="a2">Второй массив</param>
+        /// <returns></returns>
+        public static bool ArraysEqual<T>(T[] a1, T[] a2)
+        {
+            if (ReferenceEquals(a1, a2))
+                return true;
+
+            if (a1 == null || a2 == null)
+                return false;
+
+            if (a1.Length != a2.Length)
+                return false;
+
+            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+            for (int i = 0; i < a1.Length; i++)
+            {
+                if (!comparer.Equals(a1[i], a2[i])) return false;
+            }
+            return true;
+        }
+    }
+
+
     /// <summary>
     /// Натуральное число. Содержат в себе знак числа и его разряды.
     /// Хаханов Тимофей
@@ -81,6 +111,18 @@ namespace DiskMat
         {
             get { return Value[num]; }
             set { Value[num] = value; }
+        }
+
+        //Равенство натуральных чисел
+        public static bool operator ==(Natural d1, Natural d2)
+        {
+            return AddMath.ArraysEqual(d1.Value, d2.Value);
+        }
+
+        //Неравенство натуральных чисел
+        public static bool operator !=(Natural d1, Natural d2)
+        {
+            return !(d1 == d2);
         }
 
         public override string ToString()
@@ -197,6 +239,20 @@ namespace DiskMat
             set { Value[num] = value; }
         }
 
+
+        //Равенство целых чисел
+        public static bool operator ==(Digit d1, Digit d2)
+        {
+            return d1.Value == d2.Value && d1.Sign == d2.Sign;
+        }
+
+        //Неравенство целых чисел
+        public static bool operator !=(Digit d1, Digit d2)
+        {
+            return !(d1 == d2);
+        }
+
+
         public override string ToString()
         {
             string s = "";
@@ -223,13 +279,62 @@ namespace DiskMat
         public Digit Denominator;
 
         /// <summary>
-        /// Перевод из натурального в рациональное (знаменатель = 1)
+        /// Знак числа
+        /// </summary>
+        public bool Sign
+        {
+            //Возвращает знак числа
+            get { return !(Denominator.Sign ^ Numerator.Sign); }
+            //Устанавливает и нормирует знак числа (знак перед числителем, знаменатель положительный)
+            set
+            {
+                Numerator.Sign = value;
+                Denominator.Sign = true;
+            }
+        }
+
+        /// <summary>
+        /// Перевод из целого в рациональное (знаменатель = 1)
         /// </summary>
         /// <param name="num">Числитель, переводимое число</param>
         public Rational(Digit num)
         {
             Numerator = num;
-            Denominator = new Digit(new int[] { 1 });
+            Denominator = new Digit("");
+        }
+
+
+
+        /// <summary>
+        /// Перевод из натурального в рациональное (знаменатель = 1)
+        /// </summary>
+        /// <param name="num">Числитель, переводимое число</param>
+        public Rational(Natural num)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit("1");
+        }
+
+        /// <summary>
+        /// Перевод из натурального в положительное рациональное (знаменатель = 1)
+        /// </summary>
+        /// <param name="num">Числитель</param>
+        public Rational(string num)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit("1");
+        }
+
+        /// <summary>
+        /// Перевод из натурального в рациональное (знаменатель = 1)
+        /// </summary>
+        /// <param name="num">Числитель</param>
+        /// <param name="sign">Знак</param>
+        public Rational(bool sign, string num)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit("1");
+            Sign = sign;
         }
 
         /// <summary>
@@ -241,9 +346,67 @@ namespace DiskMat
         {
             Numerator = num;
             Denominator = denom;
+        }
 
-            if (!(num.Sign || denom.Sign))
-                Denominator.Sign = false;
+        /// <summary>
+        /// Инициализация рационального числа
+        /// </summary>
+        /// <param name="num">Числитель</param>
+        /// <param name="denom">Знаменатель</param>
+        public Rational(string num, string denom)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit(denom);
+        }
+
+        /// <summary>
+        /// Инициализация рационального числа
+        /// </summary>
+        /// <param name="sign">Знак</param>
+        /// <param name="num">Числитель</param>
+        /// <param name="denom">Знаменатель</param>
+        public Rational(bool sign, string num, string denom)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit(denom);
+            Sign = sign;
+        }
+
+        /// <summary>
+        /// Инициализация рационального числа
+        /// </summary>
+        /// <param name="sign">Знак</param>
+        /// <param name="num">Числитель</param>
+        /// <param name="denom">Знаменатель</param>
+        public Rational(bool sign, Digit num, Digit denom)
+        {
+            Numerator = num;
+            Denominator = denom;
+            Sign = sign;
+        }
+
+        /// <summary>
+        /// Инициализация рационального числа
+        /// </summary>
+        /// <param name="sign">Знак</param>
+        /// <param name="num">Числитель</param>
+        /// <param name="denom">Знаменатель</param>
+        public Rational(bool sign, Natural num, Natural denom)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit(denom);
+            Sign = sign;
+        }
+
+        /// <summary>
+        /// Инициализация положительного рационального числа
+        /// </summary>
+        /// <param name="num">Числитель</param>
+        /// <param name="denom">Знаменатель</param>
+        public Rational(Natural num, Natural denom)
+        {
+            Numerator = new Digit(num);
+            Denominator = new Digit(denom);
         }
 
         /// <summary>
@@ -256,11 +419,47 @@ namespace DiskMat
             Denominator.Clear();
             return this;
         }
+
+        
+        public override string ToString()
+        {
+            return (Sign ? "" : "-") + Numerator.Value + (Denominator.Value != new Natural("1") ? "/" + Denominator.Value : "");    
+        }
     }
 
-   /* public class Polynomial
+    public class Polynomial
     {
         public Rational[] Values;
+
+        /// <summary>
+        /// Инициализация полинома
+        /// </summary>
+        /// <param name="vals">Рациональные коэффициенты</param>
+        public Polynomial(Rational[] vals)
+        {
+            Values = vals;
+        }
+
+        /// <summary>
+        /// Инициализация полинома
+        /// </summary>
+        /// <param name="vals">Целые коэффициенты</param>
+        public Polynomial(Digit[] vals)
+        {
+            Values = (from Digit d in vals
+                      select new Rational(d)).ToArray();
+        }
+
+        /// <summary>
+        /// Инициализация полинома
+        /// </summary>
+        /// <param name="vals">Натуральные коэффициенты</param>
+        public Polynomial(Natural[] vals)
+        {
+            Values = (from Natural d in vals
+                      select new Rational(d)).ToArray();
+        }
+
 
         /// <summary>
         /// Вспомогательная функция, очищающая "лишние" нули: -0234 станет -234
@@ -274,5 +473,15 @@ namespace DiskMat
             }
             return this;
         }
-    }*/
+
+        public override string ToString()
+        {
+            string ret = "";
+            for(int i = Values.Length - 1; i >= 0; --i)
+            {
+                ret += "("+Values[i] + ")x^" + i + " + ";
+            }
+            return ret.Substring(0, ret.Length - 3);
+        }
+    }
 }
