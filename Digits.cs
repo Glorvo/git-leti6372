@@ -26,12 +26,21 @@ namespace DiskMat
         }
 
         /// <summary>
-        /// Инициализация положительного числа
+        /// Инициализация натурального числа
         /// </summary>
         /// <param name="Arr">Массив разрядов</param>
         public Natural(int[] Arr)
         {
             Value = Arr;
+        }
+
+        /// <summary>
+        /// Инициализация натурального числа из строки
+        /// </summary>
+        /// <param name="s">Число</param>
+        public Natural(string s)
+        {
+            Value = s.ToCharArray().Reverse().Select(x => int.Parse(x.ToString())).ToArray();
         }
 
         /// <summary>
@@ -72,6 +81,14 @@ namespace DiskMat
         {
             get { return Value[num]; }
             set { Value[num] = value; }
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            foreach(int i in Value.Reverse())
+                s += i;
+            return s;
         }
     }
 
@@ -140,6 +157,26 @@ namespace DiskMat
         }
 
         /// <summary>
+        /// Инициализация положительного числа
+        /// </summary>
+        /// <param name="data">Модуль числа</param>
+        public Digit(string data)
+        {
+            Value = new Natural(data);
+        }
+
+        /// <summary>
+        /// Инициализация числа
+        /// </summary>
+        /// <param name="sign">Знак числа</param>
+        /// <param name="data">Модуль числа</param>
+        public Digit(bool sign, string data)
+        {
+            Value = new Natural(data);
+            Sign = sign;
+        }
+
+        /// <summary>
         /// Вспомогательная функция, очищающая "лишние" нули: -0234 станет -234
         /// </summary>
         /// <returns>Для удобства, возвращает себя же</returns>
@@ -158,6 +195,14 @@ namespace DiskMat
         {
             get { return Value[num]; }
             set { Value[num] = value; }
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            foreach (int i in Value.Value.Reverse())
+                s += i;
+            return (Sign ? '+':'-')+s;
         }
 
     }
