@@ -8,20 +8,24 @@ namespace DiskMat
 {
     /// <summary>
     /// Умножение целых чисел
-    /// Хаханов Тимофей
+    /// Меркулов Артем
     /// </summary>
-    public static class Z_8
+    public static class N_8
     {
         /// <summary>
-        /// Умножение целых чисел
+        /// Умножение натуральных чисел
         /// </summary>
         /// <param name="A">Первый множитель</param>
         /// <param name="B">Второй мнжитель</param>
         /// <returns>Перемноженные числа</returns>
-        public static Digit Run(Digit A, Digit B)
+        public static Natural Run(Natural A, Natural B)
         {
-            return new Digit(A.Sign == B.Sign, N_8.Run(A.Value, B.Value));
-        } 
+            Natural ret = new Natural(new int[A.Clear().Length + B.Clear().Length]);
+
+            for (int i = 0; i < B.Length; i++)
+                ret = N_4.Run(ret, N_6.Run(A, B[i] * (int)Math.Pow(10, i)));
+            return ret.Clear();
+        }
 
     }
 }
