@@ -20,12 +20,17 @@ namespace DiskMat
         /// <returns>Будет возвращен результат умножения натурального числа на цифру</returns>
         public static Natural Run(Natural input, int numeral)
         {
-            Natural Result = new Natural(new int[input.Length + 1]);
+            Natural Result = new Natural(new int[input.Length +numeral.ToString().Length]);
             int edinicavyme = 0;
+            int val;
             for (int k = 0; k < Result.Length-1; k++)
             {
-                Result[k] = ((numeral * input[k]) % 10 + edinicavyme) % 10;
-                edinicavyme = (numeral * input[k] + edinicavyme) / 10;
+                if (k >= input.Length)
+                    val = 0;
+                else
+                    val = input[k];
+                Result[k] = ((numeral * val) % 10 + edinicavyme) % 10;
+                edinicavyme = (numeral * val + edinicavyme) / 10;
             }
             Result[Result.Length - 1] = edinicavyme % 10;
             Result.Clear();
