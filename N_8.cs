@@ -23,9 +23,12 @@ namespace DiskMat
             Natural ret = new Natural(new int[A.Clear().Length + B.Clear().Length]);
 
             for (int i = 0; i < B.Length; i++)
-                ret = N_4.Run(ret, N_6.Run(A, B[i] * (int)Math.Pow(10, i)));
+            {
+                ret = N_4.Run(ret, N_7.Run(N_6.Run(A, B[i]), i));
+            }
             return ret.Clear();
         }
 
     }
 }
+ 
