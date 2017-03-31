@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P_6
+namespace DiskMat
 {
     /// <summary>
     /// Считает степень многочлена;
