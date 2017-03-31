@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 /// <summary>
 /// Дорош Татьяна
-/// Модуль z_1, Выводит модуль целого числа
+/// Модуль Z_1, Выводит модуль целого числа
 /// </summary>
 
 namespace DiskMat
 {
-    static class z_1
+    static class Z_1
     {
          /// <summary>
         /// выводится модуль числа
