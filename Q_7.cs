@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiskMAt
+namespace DiskMat
 {
     /// <summary>
     /// модуль Q_7, Умножение дробей
