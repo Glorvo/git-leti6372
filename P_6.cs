@@ -12,10 +12,9 @@ namespace DiskMat
     /// </summary>
     static class P_6
     {
-        public static int Run(int[] input)
+        public static int Run(Polynomial input)
         {
-            Polynomial.Clear();
-            return (input.Length - 1); // Вычитаем x^0, коэфф. которого также есть в массиве
+            return input.Clear().Values.Length - 1; // Вычитаем x^0, коэфф. которого также есть в массиве
         }
     }
 }
