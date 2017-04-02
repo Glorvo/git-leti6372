@@ -19,6 +19,7 @@ namespace DiskMat
      /// <returns>Результат вычитания из большего меньшего</returns> 
         public static Natural Run(Natural A, Natural B)
         {
+            Natural Result = new Natural(new int[A.Length]);
             int b = Math.Max(A.Length, B.Length);
             switch (N_1.Run(A, B))
             {
@@ -27,18 +28,20 @@ namespace DiskMat
                 case 1:   //Если первое число больше, вычитаем из него первое
                     {
                         int c = b - (b - B.Length) - 1;
+                        int h = 0;
                         for (int i = 0; i <= c; i++)
                         {
-                            A[i] = A[i] - B[i];   //Поразрядное вычитание
-                            if (A[i] < 0)
+                            Result[i] = A[i] - B[i] - h;//Поразрядное вычитание
+                                                        // h = 0;                             
+                            if (Result[i] < 0)
                             {
-                                A[i] = A[i] + 10;           //Избавление от отрицательности
-                                A[i + 1] -= 1;   //"Занятие" единицы у следующего разряда
+                                Result[i] = Result[i] + 10;           //Избавление от отрицательности
+                                h = 1;//"Занятие" единицы у следующего разряда
                             }
                         }
 
                     }
-                    return A.Clear();
+                    return Result.Clear();
 
                 default:   // Если второе число больше, то условие не выполняется
                     throw new Exception();
