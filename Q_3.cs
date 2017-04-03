@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Модуль преобразования целого в дробное
-/// Сесин Иван
-/// </summary>
 namespace DiskMat
 {
+    /// <summary>
+    /// Модуль преобразования целого в дробное
+    /// Сесин Иван
+    /// </summary>
     class Q_3
     {
         /// <summary>
