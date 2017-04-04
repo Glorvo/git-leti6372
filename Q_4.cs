@@ -21,7 +21,7 @@ namespace DiskMat
         public static Digit Run(Rational A)
         {
             Digit output = new Digit(new int[] { 1 });
-            if (A.Denominator.Value.Length == 1 && A.Denominator.Value[0] == 1)
+            if (A.Denominator.Length == 1 && A.Denominator[0] == 1)
                 return A.Numerator;
             throw new Exception();
         }
