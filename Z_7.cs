@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic; 
-using System.Linq; 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,10 +24,10 @@ namespace DiskMat
             result.Sign = true;
 
             int len = Math.Min(A.Length, B.Length);
-            switch (N_1.Run(A.Value, B.Value))      
+            switch (N_1.Run(A.Value, B.Value))
             {
                 case 1:
-                    if (A.Sign == B.Sign)                    
+                    if (A.Sign == B.Sign)
                         result = Dif(A, B, len);
                     else
                         result.Value = N_4.Run(A.Value, B.Value);
@@ -38,7 +38,7 @@ namespace DiskMat
                     if (A.Sign == B.Sign)
                         result = Dif(B, A, len);
                     else
-                        result.Value = N_4.Run(A.Value, B.Value);                                     
+                        result.Value = N_4.Run(A.Value, B.Value);
                     result.Sign = !B.Sign;
                     break;
 
@@ -47,8 +47,8 @@ namespace DiskMat
                         result = new Digit(N_6.Run(A.Value, 2));
                     result.Sign = A.Sign;
                     break;
-            }         
-            return result.Clear();        
+            }
+            return result.Clear();
         }
 
 
@@ -57,9 +57,12 @@ namespace DiskMat
         /// </summary>
         static Digit Dif(Digit D1, Digit D2, int len)
         {
-            Digit Result = D1;
-            Result.Sign = true;
-
+            int[] a = new int[D1.Value.Length];
+            for (int i = 0; i < D1.Value.Length; i++)
+            {
+                a[i] = D1.Value[i];
+            }
+            Digit Result = new Digit(true, a);
             for (int i = len - 1; i >= 0; i--)
             {
 
