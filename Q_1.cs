@@ -19,10 +19,12 @@ namespace DiskMat
         /// <returns>Будет возвращенa сокращенная дробь </returns>
         public static Rational Run(Rational A)
         {
-            A.Clear();
+            if (A.Clear().Numerator[0] == 0)
+                return new Rational("0");
             Natural HOD = N_13.Run(Z_5.Run(A.Denominator), Z_5.Run(A.Numerator));// Находим НОД числителя и знаменателя
-            A.Numerator = Z_9.Run(A.Numerator,HOD);//Сокращаем числитель на НОД числителя и знаменятеля
+            A.Numerator = Z_9.Run(A.Numerator, HOD);//Сокращаем числитель на НОД числителя и знаменятеля
             A.Denominator = Z_9.Run(A.Denominator, HOD);// Сокращаем знаменатель на нод
+
             return A;
         }
     }
