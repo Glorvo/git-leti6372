@@ -23,8 +23,6 @@ namespace DiskMat
             Digit result = new Digit("0");
             result.Sign = true;
 
-            if (B.Value == result.Value) return A;
-
             int len = Math.Min(A.Length, B.Length);
             switch (N_1.Run(A.Value, B.Value))      
             {
@@ -64,7 +62,8 @@ namespace DiskMat
 
             for (int i = (len - 1); i >= 0 ; i--)                                             // проход по всем разрядам числа, начиная с последнего, не доходя до первого
             {
-                if (i >= (len - 1))                                                            // если текущий разряд чисел не первый
+
+                if (i >= (len - 1) && i != 0)                                                            // если текущий разряд чисел не первый
                 {
                     Result.Value[i - 1]--;                                                        // в следующуем разряде большего числа занимаем 1.
                     Result.Value[i] += 10;                                                      // в ответ записываем сумму значения текущего разряда большего числа и 10-ти
@@ -72,7 +71,7 @@ namespace DiskMat
 
                 Result.Value[i] -= D2.Value[i];                                           // вычитаем значение текущего разряда меньшего числа
 
-                if (Result.Value[i] / 10 > 0)                                                 // если значение в текущем разряде двухразрядное
+                if (Result.Value[i] / 10 > 0 && i != 0)                                                 // если значение в текущем разряде двухразрядное
                 {
                     Result.Value[i - 1]++;                                                  // переносим единицу в старший разряд
                     Result.Value[i] %= 10;                                                   // в текущем разряде отсекаем ее
