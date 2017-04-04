@@ -21,10 +21,10 @@ namespace DiskMat
         {
             if (A.Clear().Numerator[0] == 0)
                 return new Rational("0");
-            Natural HOD = N_13.Run(Z_5.Run(A.Denominator), Z_5.Run(A.Numerator));// Находим НОД числителя и знаменателя
-            A.Numerator = Z_9.Run(A.Numerator, HOD);//Сокращаем числитель на НОД числителя и знаменятеля
-            A.Denominator = Z_9.Run(A.Denominator, HOD);// Сокращаем знаменатель на нод
-
+            Natural HOD = N_13.Run(Z_5.Run(new Digit(A.Denominator)), Z_5.Run(A.Numerator));// Находим НОД числителя и знаменателя
+            A.Numerator = Z_9.Run(A.Numerator,HOD);//Сокращаем числитель на НОД числителя и знаменятеля
+            A.Denominator = N_11.Run(A.Denominator, HOD);// Сокращаем знаменатель на нод
+            
             return A;
         }
     }
