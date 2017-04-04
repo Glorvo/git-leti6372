@@ -19,13 +19,8 @@ namespace DiskMat
         /// <returns> True, если число равно нулю; False, если число не равно нулю. </returns>
         public static bool Run(Natural input)
         {
-            input.Clear();//Предворительно очищаем массив от лишних нулей
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] != 0)
-                    return false;
-            }
-            return true;
+            return (input.Clear().Length == 1 && input[0] == 0);//Предворительно очищаем массив от лишних нулей
+
         }
 
         /// <summary>
