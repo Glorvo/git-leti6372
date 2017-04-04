@@ -23,7 +23,7 @@ namespace DiskMat
              Rational ret = new Rational(new Digit(new int[] { }), new Digit(new int[] { }));
              
              ret.Numerator = Z_8.Run(A.Numerator, B.Numerator);
-             ret.Denominator = Z_8.Run(A.Denominator, B.Denominator);
+             ret.Denominator = N_8.Run(A.Denominator, B.Denominator);
              return ret.Clear();
              }
  
