@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DiskMat
 {
     /// <summary>
-    /// Модуль Q_4, Преобразование дробного в целое (если знаменатель равен 1)
+    /// Модуль Q_4, Преобразование дробного в целое (если знаменатель равен 1/Число сокращаемо)
     /// Борзенко Руслан + Григорий Белоголов
     /// </summary>
     static class Q_4
@@ -20,7 +20,7 @@ namespace DiskMat
         /// <returns>Numerator и Denomenator</returns>
         public static Digit Run(Rational A)
         {
-            Digit output = new Digit(new int[] { 1 });
+            A = Q_1.Run(A);
             if (A.Denominator.Length == 1 && A.Denominator[0] == 1)
                 return A.Numerator;
             throw new Exception();
