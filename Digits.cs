@@ -284,7 +284,7 @@ namespace DiskMat
         public bool Sign
         {
             //Возвращает знак числа
-            get { return !(Denominator.Sign ^ Numerator.Sign); }
+            get { return Numerator.Sign; }
             //Устанавливает и нормирует знак числа (знак перед числителем, знаменатель положительный)
             set
             {
@@ -346,6 +346,7 @@ namespace DiskMat
         {
             Numerator = num;
             Denominator = denom;
+            Sign = !(Denominator.Sign ^ Numerator.Sign);
         }
 
         /// <summary>
@@ -407,6 +408,7 @@ namespace DiskMat
         {
             Numerator = new Digit(num);
             Denominator = new Digit(denom);
+            Sign = !(Denominator.Sign ^ Numerator.Sign);
         }
 
         /// <summary>
