@@ -20,8 +20,9 @@ namespace DiskMat
             public static Rational Run(Rational A, Rational B)
             {
             Rational output = new Rational(new Digit(new int[] {  }),new Digit(new int[] { }));// создаем локальную переменную
-            output.Numerator = Z_8.Run(A.Numerator,B.Denominator);// определяем числитель новой дроби
-            output.Denominator = Z_8.Run(A.Denominator, B.Numerator);// определяем знаментатель
+            output.Numerator.Value = N_8.Run(A.Numerator.Value,B.Denominator);// определяем числитель новой дроби
+            output.Denominator = N_8.Run(A.Denominator, B.Numerator.Value);// определяем знаментатель
+            output.Sign = A.Sign == B.Sign;
             return output;
             }
 
