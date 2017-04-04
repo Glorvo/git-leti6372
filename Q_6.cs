@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,10 +41,12 @@ namespace DiskMat
             //Перевод НОК из натурального в целое
             Digit NOK= new Digit(true, N_14.Run(A.Denominator,B.Denominator));
             //Под общий знаменатель
-            A.Numerator = Z_8.Run(A.Numerator, Z_9.Run(NOK, A.Denominator));
-            B.Numerator = Z_8.Run(B.Numerator, Z_9.Run(NOK, B.Denominator));
+            Rational Num1 = new Rational("1", "1");
+            Rational Num2 = new Rational("1", "1");
+            Num1.Numerator = Z_8.Run(A.Numerator, Z_9.Run(NOK, A.Denominator));
+            Num2.Numerator = Z_8.Run(B.Numerator, Z_9.Run(NOK, B.Denominator));
             //Формируем результат: числитель как разность числителей, а знаменатель как НОК знаменателей
-            Rational Result = new Rational(Z_7.Run(A.Numerator, B.Numerator), NOK);
+            Rational Result = new Rational(Z_7.Run(Num1.Numerator, Num2.Numerator), NOK);
             //Результат - сокращенная дробь
             return Q_1.Run(Result);
             
