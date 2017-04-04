@@ -19,6 +19,7 @@ namespace DiskMat
         /// <returns>"true" или "false"</returns>
         public static bool Run(Rational input)
         {
+            Q_1.Run(input); // сокращаем дробь
             return input.Denominator.Clear().Length == 1 && input.Denominator[0] == 1;
 
         }
