@@ -21,7 +21,9 @@ namespace DiskMat
         public static Digit Run(Digit A, Digit B)
         {
             Digit result = new Digit("0");
-            result.Sign = true;            
+            result.Sign = true;
+
+            if (B.Value == result.Value) return A;
 
             int len = Math.Min(A.Length, B.Length);
             switch (N_1.Run(A.Value, B.Value))      
