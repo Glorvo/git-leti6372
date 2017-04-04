@@ -37,9 +37,9 @@ namespace DiskMat
 				default: // Если второе больше, меняем числа местами и вычитаем
 					{
 						Natural NumSupport = Num1;
-						Num1 = Num2;
+						Num1 = Num2Multiplied;
 						Num2 = NumSupport;
-						Difference = N_5.Run(Num1, Num2Multiplied);
+						Difference = N_5.Run(Num1, Num2);
 						return Difference;
 					}
 			}
