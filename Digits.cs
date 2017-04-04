@@ -33,6 +33,13 @@ namespace DiskMat
             }
             return true;
         }
+
+        public static T[] SubArray<T>(T[] data, int length)
+        {
+            T[] result = new T[length];
+            Array.Copy(data, 0, result, 0, length);
+            return result;
+        }
     }
 
 
@@ -83,24 +90,12 @@ namespace DiskMat
             int counter = 0;
             for (int i = Value.Length - 1; i >= 0 && Value[i] == 0; --i)
                 counter++;
-            Value = SubArray(Value, Value.Length  - counter);
+            Value = AddMath.SubArray(Value, Value.Length  - counter);
             if (Value.Length == 0)
                 Value = new int[] { 0 };
             return this;
         }
 
-        /// <summary>
-        /// Вспомогательная функция, "вырезает" часть массива
-        /// </summary>
-        /// <param name="data">Обрезаемый массив</param>
-        /// <param name="length">Необходимая длина</param>
-        /// <returns></returns>
-        static int[] SubArray(int[] data, int length)
-        {
-            int[] result = new int[length];
-            Array.Copy(data, 0, result, 0, length);
-            return result;
-        }
 
         /// <summary>
         /// Перезагрузка оператора [], позволяющая получить доступ к значению через аналогичный массиву синтаксис
@@ -437,6 +432,11 @@ namespace DiskMat
             Values = vals;
         }
 
+        public int Length
+        {
+            get { return Values.Length; }
+        }
+
         /// <summary>
         /// Инициализация полинома
         /// </summary>
@@ -468,6 +468,12 @@ namespace DiskMat
             {
                 R.Clear();
             }
+            int counter = 0;
+            for (int i = Length - 1; i >= 0 && N_1.Run(Values[i].Numerator.Value, new Natural("0")) == 0; --i)
+                counter++;
+            Values =  AddMath.SubArray(Values, Length - counter);
+            if (Length == 0)
+                Values = new Rational[] { };
             return this;
         }
 
