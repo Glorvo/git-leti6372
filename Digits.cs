@@ -276,7 +276,7 @@ namespace DiskMat
         /// <summary>
         /// Знаменатель
         /// </summary>
-        public Digit Denominator;
+        public Natural Denominator;
 
         /// <summary>
         /// Знак числа
@@ -289,7 +289,6 @@ namespace DiskMat
             set
             {
                 Numerator.Sign = value;
-                Denominator.Sign = true;
             }
         }
 
@@ -300,7 +299,7 @@ namespace DiskMat
         public Rational(Digit num)
         {
             Numerator = num;
-            Denominator = new Digit("");
+            Denominator = new Natural("1");
         }
 
 
@@ -312,7 +311,7 @@ namespace DiskMat
         public Rational(Natural num)
         {
             Numerator = new Digit(num);
-            Denominator = new Digit("1");
+            Denominator = new Natural("1");
         }
 
         /// <summary>
@@ -322,7 +321,7 @@ namespace DiskMat
         public Rational(string num)
         {
             Numerator = new Digit(num);
-            Denominator = new Digit("1");
+            Denominator = new Natural("1");
         }
 
         /// <summary>
@@ -332,9 +331,8 @@ namespace DiskMat
         /// <param name="sign">Знак</param>
         public Rational(bool sign, string num)
         {
-            Numerator = new Digit(num);
-            Denominator = new Digit("1");
-            Sign = sign;
+            Numerator = new Digit(sign, num);
+            Denominator = new Natural("1");
         }
 
         /// <summary>
@@ -345,8 +343,8 @@ namespace DiskMat
         public Rational(Digit num, Digit denom)
         {
             Numerator = num;
-            Denominator = denom;
-            Sign = !(Denominator.Sign ^ Numerator.Sign);
+            Denominator = denom.Value;
+            Sign = !(denom.Sign ^ num.Sign);
         }
 
         /// <summary>
@@ -357,7 +355,7 @@ namespace DiskMat
         public Rational(string num, string denom)
         {
             Numerator = new Digit(num);
-            Denominator = new Digit(denom);
+            Denominator = new Natural(denom);
         }
 
         /// <summary>
@@ -368,9 +366,8 @@ namespace DiskMat
         /// <param name="denom">Знаменатель</param>
         public Rational(bool sign, string num, string denom)
         {
-            Numerator = new Digit(num);
-            Denominator = new Digit(denom);
-            Sign = sign;
+            Numerator = new Digit(sign, num);
+            Denominator = new Natural(denom);
         }
 
         /// <summary>
@@ -382,7 +379,7 @@ namespace DiskMat
         public Rational(bool sign, Digit num, Digit denom)
         {
             Numerator = num;
-            Denominator = denom;
+            Denominator = denom.Value;
             Sign = sign;
         }
 
@@ -394,9 +391,8 @@ namespace DiskMat
         /// <param name="denom">Знаменатель</param>
         public Rational(bool sign, Natural num, Natural denom)
         {
-            Numerator = new Digit(num);
-            Denominator = new Digit(denom);
-            Sign = sign;
+            Numerator = new Digit(sign, num);
+            Denominator = denom;
         }
 
         /// <summary>
@@ -407,8 +403,7 @@ namespace DiskMat
         public Rational(Natural num, Natural denom)
         {
             Numerator = new Digit(num);
-            Denominator = new Digit(denom);
-            Sign = !(Denominator.Sign ^ Numerator.Sign);
+            Denominator = denom;
         }
 
         /// <summary>
@@ -425,7 +420,7 @@ namespace DiskMat
         
         public override string ToString()
         {
-            return (Sign ? "" : "-") + Numerator.Value + (Denominator.Value != new Natural("1") ? "/" + Denominator.Value : "");    
+            return (Sign ? "" : "-") + Numerator.Value + (N_1.Run(Denominator,new Natural("1"))!=0 ? "/" + Denominator : "");    
         }
     }
 
