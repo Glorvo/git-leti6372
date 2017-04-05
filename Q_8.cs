@@ -23,7 +23,7 @@ namespace DiskMat
             output.Numerator.Value = N_8.Run(A.Numerator.Value,B.Denominator);// определяем числитель новой дроби
             output.Denominator = N_8.Run(A.Denominator, B.Numerator.Value);// определяем знаментатель
             output.Sign = A.Sign == B.Sign;
-            return output;
+            return Q_1.Run(output);
             }
 
         }

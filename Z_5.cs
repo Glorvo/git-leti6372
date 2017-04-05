@@ -12,13 +12,12 @@ namespace DiskMat
     static class Z_5
     {
         /// <summary>
-        /// На вход подается целое неотрицательное число 
+        /// На вход подается целое число 
         /// </summary>
         /// <param name="input"></param>
         /// <returns>Натуральное число</returns>
         public static Natural Run(Digit input)
         {
-            if (!input.Sign) throw new Exception();
             return input.Value.Clear();
         }
     }
