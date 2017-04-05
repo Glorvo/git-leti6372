@@ -18,6 +18,7 @@ namespace DiskMat
         /// <returns>Натуральное число</returns>
         public static Natural Run(Digit input)
         {
+            if (!input.Sign) throw new Exception();
             return input.Value.Clear();
         }
     }
