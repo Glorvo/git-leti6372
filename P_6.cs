@@ -14,7 +14,9 @@ namespace DiskMat
     {
         public static int Run(Polynomial input)
         {
-            return input.Clear().Length - 1; // Вычитаем x^0, коэфф. которого также есть в массиве
+            if (input.Clear().Length > 0)
+                return input.Clear().Length - 1; // Вычитаем x^0, коэфф. которого также есть в массиве
+            else return 0;
         }
     }
 }
