@@ -21,7 +21,7 @@ namespace DiskMat
         public static Natural Run(Natural num1, Natural num2)
         {
             num1.Clear(); num2.Clear();
-            if (N_1.Run(num1, num2) == 2) throw new Exception(); // если второе число больше, то ошибка
+            if (N_1.Run(num1, num2) == 2 || N_2.Run(num2)) throw new Exception(); // если второе число больше, то ошибка
             Natural Result = N_10.Run(num1, num2);        // вычисление первой цифры деления
             Natural Prom = N_9.Run(num1, num2, Result);   // вычитание из первого числа второго, умноженного на первую цифру деления
             Natural PromResult = new Natural(new int[1]);
