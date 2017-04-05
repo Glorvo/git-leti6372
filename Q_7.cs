@@ -24,8 +24,8 @@ namespace DiskMat
              
              ret.Numerator = Z_8.Run(A.Numerator, B.Numerator);
              ret.Denominator = N_8.Run(A.Denominator, B.Denominator);
-             return ret.Clear();
-             }
+            return Q_1.Run(ret.Clear());
+        }
  
      }
  
