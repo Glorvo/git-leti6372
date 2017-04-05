@@ -13,7 +13,8 @@
         /// <returns>0 - число равно 0, 1 - чило положительно, 2 - число отрицательно</returns>
         public static int Run(Digit input)
         {
-            if (input.Clear().Length == 0 && input[0] == 0)
+            
+            if (input.Clear().Length == 1 && input[0] == 0)
                 return 0;
             if (input.Sign)
                 return 1;
